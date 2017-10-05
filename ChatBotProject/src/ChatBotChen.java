@@ -6,6 +6,20 @@ import java.util.Random;
  */
 public class ChatBotChen {
 
+	public boolean checkChatBot(String animalkey)
+	{
+		String[] animalArray = {"hamster","guinea pig","rabbit"};
+		for (String animal:animalArray)
+		{
+			if (animal.equals(animalkey))
+			{
+				return true;
+			}
+			
+		}
+		return false;
+		
+	}
 	int emotion = 0;
 	
 	/*
