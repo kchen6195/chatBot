@@ -21,8 +21,11 @@ public class ChatBotRunner
 		System.out.println(getGreeting());
 		Scanner in = new Scanner (System.in);
 		String statement = in.nextLine();
+		if (chatbot1.checkChatBot(statement))
+		{
+			System.out.println("oh ok so you like reptiles");
+		}
 		
-
 
 		while (!statement.equals("Bye"))
 		{
@@ -39,5 +42,6 @@ public class ChatBotRunner
 	{
 		return "yo this is the best pet shop in downtown bk \nhow can we help you";
 	}
+	
 
 }
