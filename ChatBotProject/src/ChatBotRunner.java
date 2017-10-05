@@ -13,9 +13,12 @@ public class ChatBotRunner
 	 */
 	public static void main(String[] args)
 	{
-		ChatBotLevin chatbot1 = new ChatBotLevin();
+		ChatBotBernard chatbot1 = new ChatBotBernard();
+		ChatBotChen chatbot2 = new ChatBotChen();
+		ChatBotUsman chatbot3 = new ChatBotUsman();
+		ChatBotYaroslavsky chatbot4 = new ChatBotYaroslavsky();
 		
-		System.out.println (chatbot1.getGreeting());
+		System.out.println(getGreeting());
 		Scanner in = new Scanner (System.in);
 		String statement = in.nextLine();
 		
@@ -23,9 +26,18 @@ public class ChatBotRunner
 
 		while (!statement.equals("Bye"))
 		{
-			System.out.println (chatbot1.getResponse(statement));
+			//System.out.println (chatbot1.getResponse(statement));
 			statement = in.nextLine();
 		}
+	}
+	/*
+	 * gets the intitial greeting for the user.
+	 * @return a string that greets the user.
+	 * 10/5/17
+	 */
+	private static String getGreeting()
+	{
+		return "yo this is the best pet shop in downtown bk \nhow can we help you";
 	}
 
 }
