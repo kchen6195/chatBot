@@ -24,6 +24,7 @@ public class ChatBotRunner
 		if (chatbot1.checkChatBot(statement))
 		{
 			System.out.println("oh ok so you like reptiles");
+			
 		}
 		
 
