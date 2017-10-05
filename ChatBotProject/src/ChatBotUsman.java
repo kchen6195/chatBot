@@ -8,8 +8,8 @@
 	 * @author Mr. Levin
 	 * @version September 2017
 	 */
-	public class ChatBotUsman
-	{public String checkChatBot(String animalkey)
+	public class ChatBotUsman{
+	/*public String checkChatBot(String animalkey)
 	{
 		String[] animalArray = {"Fish","Clown Fish","Cat Fish", "Fire Mouth Cichilid","Neon Tetra", "Platies", "Guppies"};
 		for (String animal:animalArray)
@@ -22,6 +22,29 @@
 		}
 		//return false;
 		
+	} */
+	public boolean checkChatBot(String animalkey)
+	{
+	/*String[] animalArray = {"tortoise","snake","frog","turtle",""};
+		for (String animal:animalArray)
+		{
+			if (animal.equals(animalkey))
+			{
+				return true;
+			}
+			
+		}
+		return false;
+	*/
+		String[] animalArray = {"Fish","Clown Fish","Cat Fish", "Fire Mouth Cichilid","Neon Tetra", "Platies", "Guppies"};
+		for (String animal:animalArray)
+		{
+			if (findKeyword(animalkey, animal, 0) != -1)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 		//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 		int emotion = 0;

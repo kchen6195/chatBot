@@ -31,12 +31,12 @@ public class ChatBotRunner
 			System.out.println("oh ok so you like reptiles");
 			
 
-			while (!statement.equals("Bye") && !chatbot2.checkChatBot(statement) 
-					&& !chatbot3.checkChatBot(statement) && !chatbot4.checkChatBot(statement))
+			while (!statement.equals("Bye") && !(chatbot2.checkChatBot(statement))
+					&& !(chatbot3.checkChatBot(statement)) && !(chatbot4.checkChatBot(statement)))
 			{
 				System.out.println(chatbot1.getResponse(statement));
 			}
-		}
+		}i
 		else if (chatbot2.checkChatBot(statement))
 		{
 			while (!statement.equals("Bye") && !chatbot1.checkChatBot(statement) 

@@ -7,7 +7,7 @@ import java.util.Random;
  * @version October 2017
  */
 public class ChatBotYaroslavsky { 
-	private boolean checkChatBot(String animalKey) {
+	public boolean checkChatBot(String animalKey) {
 		String[] animalArray = {"dog","cat"};
 		for (String animal: animalArray) {
 /*			if (animal.equals(animalKey)) {
