@@ -6,7 +6,7 @@
 	 * A program to carry on conversations with a human user.
 	 * This version:
 	 * @author Mr. Levin
-	 * @version September 2017
+	 * @version  September 2017
 	 */
 	public class ChatBotUsman{
 	/*public String checkChatBot(String animalkey)

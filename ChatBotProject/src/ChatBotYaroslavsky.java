@@ -3,7 +3,7 @@ import java.util.Random;
 /**
  * A program to carry on conversations with a human user about dogs and cats.
  * This version:
- * @author Edward Yaroslavsky
+ * @author  Edward Yaroslavsky
  * @version October 2017
  */
 public class ChatBotYaroslavsky { 

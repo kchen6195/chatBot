@@ -11,7 +11,7 @@ public class ChatBotBernard {
 			}
 			
 		}
-		return false;
+		return  false;
 	*/
 		String[] animalArray = {"tortoise","snake","frog","turtle",""};
 		for (String animal:animalArray)
