@@ -81,6 +81,12 @@
 				response = "That's great, is there anything I can help you with?";
 				emotion++;
 			}
+			else if (findKeyword(statement, "pet") >= 0)
+			{
+				response = "Wait you're lookin for pet?! The best choice is obviously a fish. They come in all different sizes and colors, and they make no mess at all, and theya re quiet! ";
+				emotion++;
+			}
+
 
 			// Response transforming I want to statement
 			else if (findKeyword(statement, "I want to", 0) >= 0)
