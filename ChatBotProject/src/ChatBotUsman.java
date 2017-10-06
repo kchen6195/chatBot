@@ -25,7 +25,7 @@
 	} */
 	public boolean checkChatBot(String animalkey)
 	{
-	/*String[] animalArray = {"tortoise","snake","frog","turtle",""};
+	String[] animalArray = {"Fish","Clown Fish","Cat Fish", "Fire Mouth Cichilid","Neon Tetra", "Platies", "Guppies"};
 		for (String animal:animalArray)
 		{
 			if (animal.equals(animalkey))
@@ -35,16 +35,8 @@
 			
 		}
 		return false;
-	*/
-		String[] animalArray = {"Fish","Clown Fish","Cat Fish", "Fire Mouth Cichilid","Neon Tetra", "Platies", "Guppies"};
-		for (String animal:animalArray)
-		{
-			if (findKeyword(animalkey, animal, 0) != -1)
-			{
-				return true;
-			}
-		}
-		return false;
+
+		
 	}
 		//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 		int emotion = 0;
@@ -81,7 +73,7 @@
 			else if (findKeyword(statement, "yes")>=0)
 			{
 				response = "Alright, I see. ";
-						emotion--;
+						emotion++                                ;
 			}
 			
 			else if (findKeyword(statement, "cool") >= 0)
@@ -286,8 +278,8 @@
 				"So, would you like to go for a walk?",
 				"Could you say that again?"
 		};
-		private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
-		private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+		private String [] randomAngryResponses = {"Okay....", "I don't like that tone", "Lets take this outside!", ">:(", "Bye!"};
+		private String [] randomHappyResponses = {"YASSS", "Today is a good day", "Glad to talk to you!"};
 		
 	}
 

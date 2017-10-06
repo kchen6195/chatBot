@@ -36,7 +36,7 @@ public class ChatBotRunner
 			{
 				System.out.println(chatbot1.getResponse(statement));
 			}
-		}i
+		}
 		else if (chatbot2.checkChatBot(statement))
 		{
 			while (!statement.equals("Bye") && !chatbot1.checkChatBot(statement) 
