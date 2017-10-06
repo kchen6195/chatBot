@@ -3,6 +3,12 @@ import java.util.Random;
  * Chat Bot that will attend to a customer that wants a small animal.
  * @Author:  Kelvin Chen
  * 
+ * 
+ * ideas: everytime the person says the animal include a piece of information ie: likes a big cage, lives 3-4 years.
+ * add field : animal name ++ when person says name
+ * ifs: how then more if (keywords) -> "feed" "care" "hold" 
+ *      when -> "feed"
+ *      
  */
 public class ChatBotChen {
 
