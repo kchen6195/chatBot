@@ -42,7 +42,7 @@ public class ChatBotRunner
 			while (!statement.equals("Bye") && !chatbot1.checkChatBot(statement) 
 					&& !chatbot3.checkChatBot(statement) && !chatbot4.checkChatBot(statement))
 			{
-				System.out.println(chatbot1.getResponse(statement));
+				System.out.println(chatbot2.getResponse(statement));
 			}
 		}
 		else if (chatbot3.checkChatBot(statement))
@@ -50,7 +50,7 @@ public class ChatBotRunner
 			while (!statement.equals("Bye") && !chatbot2.checkChatBot(statement) 
 					&& !chatbot1.checkChatBot(statement) && !chatbot4.checkChatBot(statement))
 			{
-				System.out.println(chatbot1.getResponse(statement));
+				System.out.println(chatbot3.getResponse(statement));
 			}
 		}
 		else if (chatbot4.checkChatBot(statement))
@@ -58,7 +58,7 @@ public class ChatBotRunner
 			while (!statement.equals("Bye") && !chatbot2.checkChatBot(statement)
 					&& !chatbot3.checkChatBot(statement) && !chatbot1.checkChatBot(statement))
 			{
-				System.out.println(chatbot1.getResponse(statement));
+				System.out.println(chatbot4.getResponse(statement));
 			}
 
 		}
