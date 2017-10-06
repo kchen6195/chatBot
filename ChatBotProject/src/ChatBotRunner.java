@@ -72,7 +72,7 @@ public class ChatBotRunner
 		
 	}
 	/*
-	 * gets the intitial greeting for the user.
+	 * gets the initial greeting for the user.
 	 * @return a string that greets the user.
 	 * 10/5/17
 	 */
