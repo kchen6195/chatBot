@@ -30,7 +30,6 @@ public class ChatBotRunner
 
 			System.out.println("oh ok so you like reptiles");
 			
-
 			while (!statement.equals("Bye") && !(chatbot2.checkChatBot(statement))
 					&& !(chatbot3.checkChatBot(statement)) && !(chatbot4.checkChatBot(statement)))
 			{

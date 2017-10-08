@@ -72,6 +72,14 @@ public class ChatBotBernard {
 	}
 	public String getResponse(String statement)
 	{
-		
+		if (statement.length()==0)
+		{
+			String[] emptyResponses = {"You're replying slower than a tortoise!!","I know snakes that type faster than you./nThey don't even have fingers...",
+					"Please say something.","Hurry up and reply... I have other customers!"};
+			int i = (int)Math.random()*(emptyResponses.length);
+			String answerEmpty = emptyResponses[i];
+			return answerEmpty;
+		}
+		return "";
 	}
 }

@@ -113,5 +113,9 @@ public class ChatBotChen {
 	{
 		return findKeyword (statement, goal, 0);
 	}
+	public String getResponse(String statement)
+	{
+		
+	}
 	
 }
