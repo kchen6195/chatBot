@@ -85,7 +85,7 @@ public class ChatBotYaroslavsky {
 			
 		}
 		else if (findKeyword(statement, "buy") >= 0) {
-			response = transformBuy(statement);
+			response = transformBuy(statement); 
 		}
 		else
 		{
