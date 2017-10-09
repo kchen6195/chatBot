@@ -1,5 +1,7 @@
 
 public class ChatBotBernard {
+	int patience = 0;
+	String[] animalArray = {"tortoise","snake","frog","turtle",""};
 	public boolean checkChatBot(String animalkey)
 	{
 	/*String[] animalArray = {"tortoise","snake","frog","turtle",""};
@@ -13,7 +15,7 @@ public class ChatBotBernard {
 		}
 		return  false;
 	*/
-		String[] animalArray = {"tortoise","snake","frog","turtle",""};
+		
 		for (String animal:animalArray)
 		{
 			if (findKeyword(animalkey, animal, 0) != -1)
@@ -70,8 +72,43 @@ public class ChatBotBernard {
 
 		return -1;
 	}
+	private String randomResponse()
+	{
+			patience--;
+			if (patience==0)
+			{
+				String[] randomArray = {"Huh?","Can you rephrase that in reptilian for me?","Sorry I don't understand."
+						,"Hmmm","Hmph"};
+				int i = (int)Math.random()*(randomArray.length);
+				return randomArray[i];
+			}	
+			else if (patience <= 0)
+			{
+				String[] randomImpatientArray = {"Hiss","Can you please use your words correctly to speak",">:(((","Your pushing my limit","You were here... Now your here!!","ok....."};
+				int i = (int)Math.random()*(randomImpatientArray.length);
+				return randomImpatientArray[i];
+			}
+			else 
+			{
+				String[] randomPatientArray = {"Hey can you please say that again.","Excuse me but I don't understand","Oh okay!Interesting","Yeah yeah totally"};
+				int i = (int)Math.random()*(randomPatientArray.length);
+				return randomPatientArray[i];
+			}
+	}
 	public String getResponse(String statement)
 	{
+		statement.toLowerCase();
+		boolean animalInStatement = false;
+		int posOfAnimal = -1;
+		for (String animal:animalArray)
+		{
+			if (findKeyword(statement, animal, 0) >= -1)
+			{
+				animalInStatement = false;
+				posOfAnimal = findKeyword(statement, animal, 0);
+				
+			}
+		}
 		if (statement.length()==0)
 		{
 			String[] emptyResponses = {"You're replying slower than a tortoise!!","I know snakes that type faster than you./nThey don't even have fingers...",
@@ -80,6 +117,14 @@ public class ChatBotBernard {
 			String answerEmpty = emptyResponses[i];
 			return answerEmpty;
 		}
-		return "";
+		else if (animalInStatement)
+		{
+			if (findKeyWord)
+		}
+		else 
+		{
+			return randomResponse();
+		}
+		
 	}
 }
