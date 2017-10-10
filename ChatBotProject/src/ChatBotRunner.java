@@ -22,7 +22,59 @@ public class ChatBotRunner
 		Scanner in = new Scanner (System.in);
 		String statement = in.nextLine();
 		
-		
-		
+		/*
+		 * These if and if else statements decides which chatbot the user wants to talk to.
+		 * Uses the checkChatBot function to understand if the 
+		 */
+		if (chatbot1.checkChatBot(statement))
+		{
+
+			System.out.println("oh ok so you like reptiles");
+			statement = in.nextLine();
+			while (!statement.equals("Bye") && !(chatbot2.checkChatBot(statement))
+					&& !(chatbot3.checkChatBot(statement)) && !(chatbot4.checkChatBot(statement)))
+			{
+				System.out.println(chatbot1.getResponse(statement));
+				statement = in.nextLine();
+			}
+		}
+		else if (chatbot2.checkChatBot(statement))
+		{
+			System.out.println("ask me about the smallest of animals");
+			statement = in.nextLine();
+			while (!statement.equals("Bye") && !chatbot1.checkChatBot(statement) 
+					&& !chatbot3.checkChatBot(statement) && !chatbot4.checkChatBot(statement))
+			{
+				System.out.println(chatbot2.getResponse(statement));
+				statement = in.nextLine();
+			}
+		}
+		else if (chatbot3.checkChatBot(statement))
+		{
+			System.out.println("fish person");
+			statement = in.nextLine();
+			while (!statement.equals("Bye") && !chatbot2.checkChatBot(statement) 
+					&& !chatbot1.checkChatBot(statement) && !chatbot4.checkChatBot(statement))
+			{
+				System.out.println(chatbot3.getResponse(statement));
+				statement = in.nextLine();
+			}
+		}
+		else if (chatbot4.checkChatBot(statement))
+		{
+			System.out.println("dog person");
+			statement = in.nextLine();
+			while (!statement.equals("Bye") && !chatbot2.checkChatBot(statement)
+					&& !chatbot3.checkChatBot(statement) && !chatbot1.checkChatBot(statement))
+			{
+				System.out.println(chatbot4.getResponse(statement));
+				statement = in.nextLine();
+			}
+
+		}
+		else
+		{
+			
+		}
 	}
 }

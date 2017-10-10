@@ -139,30 +139,30 @@ public class ChatBotChen {
 			{
 				if(findKeyword(statement, "care")!= -1)
 				{
-					response = "";
+					response = "you give the hamster attention and affection";
 				}
 				else if(findKeyword(statement, "feed")!= -1)
 				{
-					response = "";
+					response = "give it a food bowl and poor a tablespoon of food into it";
 				}
 				else if(findKeyword(statement, "hold")!= -1)
 				{
-					response = "";
+					response = "let it walk on your hand. Dont force it!";
 				}
 				else if(findKeyword(statement, "long")!= -1)
 				{ // life span
-					response = "";
+					response = "they live for 2-3 years";
 				}
 			}
 			else if (findKeyword(statement, "when") != -1)
 			{
 				if(findKeyword(statement, "feed")!= -1)
 				{
-					response = "";
+					response = "when it stares at you ";
 				}
 				else if(findKeyword(statement, "sleeps")!= -1)
 				{
-					response = "";
+					response = "during the day and awake at night";
 				}
 			}
 			else
