@@ -20,7 +20,7 @@ public class ChatBotChen {
 			if (findKeyword(animalkey,animal) != -1)
 			{
 				return true;
-			}//
+			}
 			
 		}
 		return false;
