@@ -27,7 +27,7 @@ public class ChatBotChen {
 		
 	}
 	int emotion = 0;
-	
+	public static String animal = "";
 	/*
 	 * Get a greeting
 	 * @return: a greeting
@@ -115,7 +115,62 @@ public class ChatBotChen {
 	}
 	public String getResponse(String statement)
 	{
+			String response = "";
 		
+		if (statement.length() == 0)
+		{
+			response = "Hey, you there?";
+		}
+		if(findKeyword(statement, "hamster") != -1)
+		{
+			 animal = "hamster";
+		}
+		if(findKeyword(statement, "guinea pig") != -1)
+		{
+			animal = "guinea pig";
+		}
+		if(findKeyword(statement, "rabbit") != -1)
+		{
+			animal = "rabbit";
+		}
+		if(animal == "hamster")
+		{
+			 if (findKeyword(statement, "how") != -1)
+			{
+				if(findKeyword(statement, "care")!= -1)
+				{
+					response = "";
+				}
+				else if(findKeyword(statement, "feed")!= -1)
+				{
+					response = "";
+				}
+				else if(findKeyword(statement, "hold")!= -1)
+				{
+					response = "";
+				}
+				else if(findKeyword(statement, "long")!= -1)
+				{ // life span
+					response = "";
+				}
+			}
+			else if (findKeyword(statement, "when") != -1)
+			{
+				if(findKeyword(statement, "feed")!= -1)
+				{
+					response = "";
+				}
+				else if(findKeyword(statement, "sleeps")!= -1)
+				{
+					response = "";
+				}
+			}
+			else
+			{
+				//get random;
+			}
+		return response;
 	}
 	
+}
 }
