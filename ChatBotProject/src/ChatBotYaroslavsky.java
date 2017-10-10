@@ -11,9 +11,6 @@ public class ChatBotYaroslavsky {
 	public boolean checkChatBot(String animalKey) {
 		String[] animalArray = {"dog","cat"};
 		for (String animal: animalArray) {
-/*			if (animal.equals(animalKey)) {
-				return true;
-			} */
 			if (findKeyword(animalKey,animal) != -1) {
 				return true;
 			}
@@ -81,9 +78,16 @@ public class ChatBotYaroslavsky {
 		else if (findKeyword(statement, "decide") >= 0 && findKeyword(statement, "dog") >= 0) {
 			response = flipCoinGameIntro(statement);
 		}
-		if (statement.equals("play")) {
-			
+		else if (statement.equals("play")) {
+			response = "Type in 'tails' if you think you should buy a dog /nand 'heads' if you think you should buy anything else "
+					+ "/nI will decide for you";
 		}
+		else if (statement.equals("heads")) {
+			response = "Oops! Looks like it landed on tails. Time to get a dog!";
+		}
+		else if (statement.equals("tails")) {
+			response = "Congrats! The coin landed on heads. Time to get a dog!";
+		}	
 		else if (findKeyword(statement, "buy") >= 0) {
 			response = transformBuy(statement); 
 		}
@@ -288,9 +292,15 @@ public class ChatBotYaroslavsky {
 		}
 		
 		emotion++;
-		return "I love " + dogBreeds + " they truly are fascinating!";
+		return "I love " + dogBreeds + "they truly are fascinating!";
 	}
 	
+	/**
+	 * Takes a statement with the key words "decide" and "dog" following it, 
+	 * and asks the user if they would like to play a coin flip game
+	 * @param statement the user states, assumed to contain the key words
+	 * @return the statement asking if the user wants to play a game
+	 */
 	private String flipCoinGameIntro(String statement) {
 		statement = statement.trim();
 		String lastChar = statement.substring(statement.length() - 1);
