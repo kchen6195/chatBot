@@ -72,6 +72,9 @@ public class ChatBotBernard {
 
 		return -1;
 	}
+	/*
+	 * Generates a random response when called.
+	 */
 	private String randomResponse()
 	{
 			patience--;
@@ -95,10 +98,16 @@ public class ChatBotBernard {
 				return randomPatientArray[i];
 			}
 	}
+	/*
+	 * This method returns a response to the statement of the previous line from the user.
+	 * @param String statement
+	 * @return a string for the chat bot to respond with.
+	 */
 	public String getResponse(String statement)
 	{
 		statement.toLowerCase();
 		boolean animalInStatement = false;
+		String animalName = "";
 		int posOfAnimal = -1;
 		for (String animal:animalArray)
 		{
@@ -106,7 +115,7 @@ public class ChatBotBernard {
 			{
 				animalInStatement = false;
 				posOfAnimal = findKeyword(statement, animal, 0);
-				
+				animalName = animal;
 			}
 		}
 		if (statement.length()==0)
@@ -119,7 +128,19 @@ public class ChatBotBernard {
 		}
 		else if (animalInStatement)
 		{
-			if (findKeyWord)
+			if (animalName.equals("tortoise"))
+			{
+				if (findKeyword(statement,"food",0)>=0)
+				{
+					return "Tortoises really like fruit.";
+				}
+				return "Oh I like tortoises too";
+			}
+			else if (animalName.equals("frog"))
+			{
+				return "I used to have frogs but they died";
+			}
+			return randomResponse();
 		}
 		else 
 		{
