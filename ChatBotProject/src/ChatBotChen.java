@@ -17,7 +17,7 @@ public class ChatBotChen {
 		String[] animalArray = {"hamster","guinea pig","rabbit"};
 		for (String animal:animalArray)
 		{
-			if (animal.equals(animalkey))
+			if (findKeyword(animalkey,animal) != -1)
 			{
 				return true;
 			}
@@ -167,10 +167,11 @@ public class ChatBotChen {
 			}
 			else
 			{
-				//get random;
+				response = "go away";
 			}
-		return response;
+		
 	}
+		return response;
 	
 }
 }
