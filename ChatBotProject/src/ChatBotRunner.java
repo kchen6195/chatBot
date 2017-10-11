@@ -27,15 +27,19 @@ public class ChatBotRunner
 		 * array animalArray is all of the animals that our pet shop chatbot can provide information on.
 		 * int animalPosArray is the position of the animal the user wants to discuss within animalArray.
 		 */
+	
 		String[] animalArray = {"hamster","guinea pig","tortoise","frog","dog","cat","fish","seaweed"};
 		int animalPosArray = -1;
-		for (String animal:animalArray)
 		{
-			if (chatbot1.findKeyword(statement, animal, 0)>=0)
+			for (String animal:animalArray)
 			{
-				animalPosArray = Arrays.asList(animalArray).indexOf(animal);
+				if (chatbot1.findKeyword(statement, animal, 0)>=0)
+				{					
+					animalPosArray = Arrays.asList(animalArray).indexOf(animal);
+				}	
 			}
 		}
+		
 		if (animalPosArray< 2 && animalPosArray>-1)
 		{
 			while (statement!="Bye")

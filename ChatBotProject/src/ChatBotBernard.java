@@ -1,30 +1,14 @@
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class ChatBotBernard {
 	int patience = 0;
-	String[] animalArray = {"tortoise","snake","frog","turtle",""};
-	public boolean checkChatBot(String animalkey)
-	{
-	/*String[] animalArray = {"tortoise","snake","frog","turtle",""};
-		for (String animal:animalArray)
-		{
-			if (animal.equals(animalkey))
-			{
-				return true;
-			}
-			
-		}
-		return  false;
-	*/
-		
-		for (String animal:animalArray)
-		{
-			if (findKeyword(animalkey, animal, 0) != -1)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+	
+	
+	ChatBotChen chatbot2 = new ChatBotChen();
+	ChatBotUsman chatbot3 = new ChatBotUsman();
+	ChatBotYaroslavsky chatbot4 = new ChatBotYaroslavsky();
+	Scanner in = new Scanner (System.in);
 	public int findKeyword(String statement, String goal,
 			int startPos)
 	{
@@ -106,6 +90,49 @@ public class ChatBotBernard {
 	public String getResponse(String statement)
 	{
 		statement.toLowerCase();
+		
+		String[] animalArray = {"hamster","guinea pig","tortoise","frog","dog","cat","fish","seaweed"};
+		int animalPosArray = -1;
+		{
+			for (String animal:animalArray)
+			{
+				if (findKeyword(statement, animal, 0)>=0)
+				{					
+					animalPosArray = Arrays.asList(animalArray).indexOf(animal);
+				}	
+			}
+		}
+		if (animalPosArray< 2 && animalPosArray>-1)
+		{
+			while (statement!="Bye")
+			{
+				System.out.println(chatbot2.getResponse(statement));
+				statement = in.nextLine();
+			}
+		}
+		
+		else if (animalPosArray< 6 && animalPosArray>3)
+		{
+			while (statement!="Bye")
+			{
+				System.out.println(chatbot4.getResponse(statement));
+				statement = in.nextLine();
+			}
+		}
+		else if (animalPosArray< 8 && animalPosArray>5)
+		{
+			while (statement!="Bye")
+			{
+				System.out.println(chatbot3.getResponse(statement));
+				statement = in.nextLine();
+			}
+		}
+		else
+		{
+			
+		}
+		
+		
 		boolean animalInStatement = false;
 		String animalName = "";
 		int posOfAnimal = -1;
