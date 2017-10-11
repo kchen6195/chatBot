@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -44,6 +45,48 @@ public class ChatBotYaroslavsky {
 	public String getResponse(String statement) {
 		String response = "";
 		
+		ChatBotBernard chatbot1 = new ChatBotBernard();
+		ChatBotChen chatbot2 = new ChatBotChen();
+		ChatBotUsman chatbot3 = new ChatBotUsman();
+		Scanner in = new Scanner (System.in); 
+		
+		String[] animalArray = {"hamster","guinea pig","tortoise","frog","dog","cat","fish","seaweed"};
+		int animalPosArray = -1;
+		{
+			for (String animal:animalArray)
+			{
+				if (findKeyword(statement, animal, 0)>=0)
+				{					
+					animalPosArray = Arrays.asList(animalArray).indexOf(animal);
+				}	
+			}
+		}
+		if (animalPosArray< 2 && animalPosArray>-1)
+		{
+			while (statement!="Bye")
+			{
+				System.out.println(chatbot2.getResponse(statement));
+				statement = in.nextLine();
+			}
+		}
+		
+		else if (animalPosArray< 4 && animalPosArray>1)
+		{
+			while (statement!="Bye")
+			{
+				System.out.println(chatbot1.getResponse(statement));
+				statement = in.nextLine();
+			}
+		}
+		else if (animalPosArray< 8 && animalPosArray>5)
+		{
+			while (statement!="Bye")
+			{
+				System.out.println(chatbot3.getResponse(statement));
+				statement = in.nextLine();
+			}
+		} 
+		
 		if (statement.length() == 0) {
 			response = "Please talk to me.";
 		}
@@ -52,7 +95,7 @@ public class ChatBotYaroslavsky {
 			mentionDog = true;
 			emotion++;
 		}
-		if (mentionDog) {
+		else if (mentionDog) {
 			if (findKeyword(statement, "size") >= 0) {
 				response = "Small-sized dog breeds can stand as small as 2.5 inches at the shoulder and can weigh under 10 pounds."
 						+ "\nMedium-sized dog breeds can stand about 18-22 inches at the shoulder and can weigh about 40-60 pounds."
@@ -67,6 +110,10 @@ public class ChatBotYaroslavsky {
 				response = "Lovingly referred to as the 'Yorkie', the Yorkshire terrier is the ultimate cutie in small breeds."
 						+ "\nI personally believe that German Shepherd and Husky breeds are the best";
 			}
+			else {
+				response = "Why didn't you listen to me?";
+				emotion--;
+			}
 			mentionDog = false;
 		}
 		else if (findKeyword(statement, "cat") >= 0 && statement.length() == 3) {
@@ -74,7 +121,7 @@ public class ChatBotYaroslavsky {
 			mentionCat = true;
 			emotion--;
 		}
-		if (mentionCat) {
+		else if (mentionCat) {
 			if (findKeyword(statement, "evil") >= 0) {
 				response = "All cats are evil.";
 			}
@@ -84,6 +131,10 @@ public class ChatBotYaroslavsky {
 			else if (findKeyword(statement, "cuteness") >= 0) {
 				response = "Do not be tricked by the cats' cuteness; It is only a ruse."
 						+ "\nThey hide their true maleficent intent behind their cuteness like a shield";
+			}
+			else {
+				response = "Why didn't you listen to me?";
+				emotion--;
 			}
 			mentionCat = false;
 		}
@@ -297,7 +348,7 @@ public class ChatBotYaroslavsky {
 		
 		for (String breed: dogBreedArray) {
 			if (findKeyword(statement, breed) >= 0) {
-				dogBreeds += breed + ", ";
+				dogBreeds += breed + "s, ";
 			}
 		}
 		
