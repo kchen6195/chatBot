@@ -18,19 +18,22 @@ public class ChatBotYaroslavsky {
 		return false;
 	}
 	
-	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
+	
 	String[] dogBreedArray = {"shepherd","husky","beagle","retriever","bulldog","chihuahua","poodle","boxer","rottweiler","dachshund",
 			"terrier","shih tzu","pug","corgi","dane","collie","spaniel","pomeranian","pointer","schnauzer","sheepdog","hound"};
+	
+	boolean mentionDog = false;
+	boolean mentionCat = false;
 	boolean listedDogBreeds = false;
 	
 	/**
 	 * Get a default greeting 	
 	 * @return a greeting
 	 */	
-	public String getGreeting()
-	{
-		return "Hi, what is up?";
+	public String getGreeting() {
+		return "Hi, what is up? Do you want to talk about man's best friend (dogs) or their worst enemy (cats)?"
+				+ "\nType in 'dog' or 'cat' to learn more about them!";
 	}
 		
 	/**
@@ -38,61 +41,90 @@ public class ChatBotYaroslavsky {
 	 * @param statement the user statement
 	 * @return a response based on the rules given
 	 */
-	
-	public String getResponse(String statement)
-	{
+	public String getResponse(String statement) {
 		String response = "";
 		
-		if (statement.length() == 0)
-		{
-			response = "Say something, please.";
+		if (statement.length() == 0) {
+			response = "Please talk to me.";
 		}
-		else if (findKeyword(statement, "no") >= 0)
-		{
-			response = "Why so negative?";
-            emotion--;
-		}
-			
-		else if (findKeyword(statement, "dog") >= 0)
-		{
-			response = "I love dogs!";
+		else if (findKeyword(statement, "dog") >= 0 && statement.length() == 3) {
+			response = "Great! Type in 'size', 'speed', or 'cuteness' to learn more about dogs";
+			mentionDog = true;
 			emotion++;
 		}
-		else if (findKeyword(statement, "cat") >= 0)
-		{
-			response = "Ew! Cats are disgusting creatures!";
+		if (mentionDog) {
+			if (findKeyword(statement, "size") >= 0) {
+				response = "Small-sized dog breeds can stand as small as 2.5 inches at the shoulder and can weigh under 10 pounds."
+						+ "\nMedium-sized dog breeds can stand about 18-22 inches at the shoulder and can weigh about 40-60 pounds."
+						+ "\nLarge-Sized dog breeds can get bigger than 2.5 feet at the shoulder and can weigh over 200 pounds.";
+			}
+			else if (findKeyword(statement, "speed") >= 0) {
+				response = "When you think of fast dogs, the tall and lean Greyhound is a great example. \nThis racing breed has been"
+						+ " clocked at speeds up to 45 miles per hour, sparking its nickname: the 45-mph couch potato."
+						+ "\nHowever, an average dog can run about 19 miles per hour";
+			}
+			else if (findKeyword(statement, "cuteness") >= 0) {
+				response = "Lovingly referred to as the 'Yorkie', the Yorkshire terrier is the ultimate cutie in small breeds."
+						+ "\nI personally believe that German Shepherd and Husky breeds are the best";
+			}
+			mentionDog = false;
+		}
+		else if (findKeyword(statement, "cat") >= 0 && statement.length() == 3) {
+			response = "That's an odd choice. Type in 'evil', 'soul', or 'cuteness' to learn more about cats";
+			mentionCat = true;
 			emotion--;
 		}
-		// Response transforming I want to statement
-		else if (findKeyword(statement, "I want to") >= 0)
-		{
+		if (mentionCat) {
+			if (findKeyword(statement, "evil") >= 0) {
+				response = "All cats are evil.";
+			}
+			else if (findKeyword(statement, "soul") >= 0) {
+				response = "All cats have no soul.";
+			}
+			else if (findKeyword(statement, "cuteness") >= 0) {
+				response = "Do not be tricked by the cats' cuteness; It is only a ruse."
+						+ "\nThey hide their true maleficent intent behind their cuteness like a shield";
+			}
+			mentionCat = false;
+		}
+		else if (findKeyword(statement, "I want to") >= 0) {
 			response = transformIWantToStatement(statement);
 		}
-		else if (findKeyword(statement, "I want") >= 0)
-		{
+		else if (findKeyword(statement, "I want") >= 0) {
 			response = transformIWantStatement(statement);
-		}	
+		}
 		else if (findKeyword(statement, "I") >= 0 && findKeyword(statement, "you", findKeyword(statement, "I")) >= 0) {
 			response = transformIYouStatement(statement);
 		}
 		else if (findKeyword(statement, "decide") >= 0 && findKeyword(statement, "dog") >= 0) {
 			response = flipCoinGameIntro(statement);
 		}
+		else if (findKeyword(statement, "buy") >= 0) {
+			response = transformBuy(statement); 
+		}
+		else if (findKeyword(statement, "dogs") >= 0) {
+			response = "I love dogs!";
+			emotion++;
+		}
+		else if (findKeyword(statement, "cats") >= 0) {
+			response = "Ew! Cats are disgusting creatures!";
+			emotion--;
+		}
+		else if (findKeyword(statement, "no") >= 0) {
+			response = "Why so negative?";
+            emotion--;
+		}	
 		else if (statement.equals("play")) {
-			response = "Type in 'tails' if you think you should buy a dog /nand 'heads' if you think you should buy anything else "
-					+ "/nI will decide for you";
+			response = "Type in 'tails' if you think you should buy a dog \nand 'heads' if you think you should buy anything else "
+					+ "\nI will decide for you";
 		}
 		else if (statement.equals("heads")) {
 			response = "Oops! Looks like it landed on tails. Time to get a dog!";
 		}
 		else if (statement.equals("tails")) {
-			response = "Congrats! The coin landed on heads. Time to get a dog!";
+			response = "Congrats! The coin landed on tails. Time to get a dog!";
 		}	
-		else if (findKeyword(statement, "buy") >= 0) {
-			response = transformBuy(statement); 
-		}
-		else
-		{
+		else {
 			for (String breed: dogBreedArray) {
 				if (findKeyword(statement,breed) != -1) {
 					listedDogBreeds = true;
@@ -117,36 +149,26 @@ public class ChatBotYaroslavsky {
 	 * @param startPos the character of the string to begin the search at
 	 * @return the index of the first occurrence of goal in statement or -1 if it's not found
 	 */
-	private int findKeyword(String statement, String goal, int startPos)
-	{
+	private int findKeyword(String statement, String goal, int startPos) {
 		String phrase = statement.trim().toLowerCase();
 		goal = goal.toLowerCase();
 
-		// The only change to incorporate the startPos is in the line below
 		int psn = phrase.indexOf(goal, startPos);
 
-		// Refinement--make sure the goal isn't part of a word
-		while (psn >= 0)
-		{
-			// Find the string of length 1 before and after the word
+		while (psn >= 0) {
 			String before = " ", after = " ";
-			if (psn > 0)
-			{
+			if (psn > 0) {
 				before = phrase.substring(psn - 1, psn);
 			}
-			if (psn + goal.length() < phrase.length())
-			{
+			if (psn + goal.length() < phrase.length()) {
 				after = phrase.substring(psn + goal.length(), psn + goal.length() + 1);
 			}
 
-			// If before and after aren't letters, we've found the word
-			if (((before.compareTo("a") < 0) || (before.compareTo("z") > 0)) // before is not a letter
-					&& ((after.compareTo("a") < 0) || (after.compareTo("z") > 0)))
-			{
+			if (((before.compareTo("a") < 0) || (before.compareTo("z") > 0)) 
+					&& ((after.compareTo("a") < 0) || (after.compareTo("z") > 0))) {
 				return psn;
 			}
 
-			// The last position didn't work, so let's find the next, if there is one.
 			psn = phrase.indexOf(goal, psn + 1);
 
 		}
@@ -162,8 +184,7 @@ public class ChatBotYaroslavsky {
 	 * @param goal the string to search for
 	 * @return the index of the first occurrence of goal in statement or -1 if it's not found
 	 */
-	private int findKeyword(String statement, String goal)
-	{
+	private int findKeyword(String statement, String goal) {
 		return findKeyword (statement, goal, 0);
 	}
 	
@@ -173,13 +194,10 @@ public class ChatBotYaroslavsky {
 	 * @param statement the user statement, assumed to contain "I want to"
 	 * @return the transformed statement
 	 */
-	private String transformIWantToStatement(String statement)
-	{
-		//  Remove the final period, if there is one
+	private String transformIWantToStatement(String statement) {
 		statement = statement.trim();
 		String lastChar = statement.substring(statement.length() - 1);
-		if (lastChar.equals("."))
-		{
+		if (lastChar.equals(".")) {
 			statement = statement.substring(0, statement.length() - 1);
 		}
 		int psn = findKeyword (statement, "I want to", 0);
@@ -192,13 +210,10 @@ public class ChatBotYaroslavsky {
 	 * @param statement the user statement, assumed to contain "I want"
 	 * @return the transformed statement
 	 */
-	private String transformIWantStatement(String statement)
-	{
-		//  Remove the final period, if there is one
+	private String transformIWantStatement(String statement) {
 		statement = statement.trim();
 		String lastChar = statement.substring(statement.length() - 1);
-		if (lastChar.equals("."))
-		{
+		if (lastChar.equals(".")) {
 			statement = statement.substring(0, statement.length() - 1);
 		}
 		int psn = findKeyword (statement, "I want", 0);
@@ -212,13 +227,10 @@ public class ChatBotYaroslavsky {
 	 * @param statement the user statement, assumed to contain "I" followed by "you"
 	 * @return the transformed statement
 	 */
-	private String transformIYouStatement(String statement)
-	{
-		//  Remove the final period, if there is one
+	private String transformIYouStatement(String statement) {
 		statement = statement.trim();
 		String lastChar = statement.substring(statement.length() - 1);
-		if (lastChar.equals("."))
-		{
+		if (lastChar.equals(".")) {
 			statement = statement.substring(0, statement.length() - 1);
 		}
 		
@@ -237,8 +249,7 @@ public class ChatBotYaroslavsky {
 	private String transformBuy(String statement) {
 		statement = statement.trim();
 		String lastChar = statement.substring(statement.length() - 1);
-		if (lastChar.equals("."))
-		{
+		if (lastChar.equals(".")) {
 			statement = statement.substring(0, statement.length() - 1);
 		}
 		
@@ -278,8 +289,7 @@ public class ChatBotYaroslavsky {
 	private String transformBreeds(String statement) {
 		statement = statement.trim();
 		String lastChar = statement.substring(statement.length() - 1);
-		if (lastChar.equals("."))
-		{
+		if (lastChar.equals(".")) {
 			statement = statement.substring(0, statement.length() - 1);
 		}
 		
@@ -304,8 +314,7 @@ public class ChatBotYaroslavsky {
 	private String flipCoinGameIntro(String statement) {
 		statement = statement.trim();
 		String lastChar = statement.substring(statement.length() - 1);
-		if (lastChar.equals("."))
-		{
+		if (lastChar.equals(".")) {
 			statement = statement.substring(0, statement.length() - 1);
 		}
 		
@@ -319,26 +328,23 @@ public class ChatBotYaroslavsky {
 	 * Pick a default response to use if nothing else fits.
 	 * @return a non-committal string
 	 */
-	private String getRandomResponse ()
-	{
-		Random r = new Random ();
-		if (emotion == 0)
-		{	
-			return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
+	private String getRandomResponse () {
+		Random r = new Random();
+		if (emotion == 0) {	
+			return randomNeutralResponses[r.nextInt(randomNeutralResponses.length)];
 		}
-		if (emotion < 0)
-		{	
-			return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
+		if (emotion < 0) {	
+			return randomAngryResponses[r.nextInt(randomAngryResponses.length)];
 		}	
-		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
+		return randomHappyResponses[r.nextInt(randomHappyResponses.length)];
 	}
 	
-	private String [] randomNeutralResponses = {"Interesting, tell me more", "Hmmm.", "Do you really think so?", "You don't say.", 
-			"It's all boolean to me.", "So, would you like to go for a walk?", "Could you say that again?"};
+	private String[] randomNeutralResponses = {"Interesting, tell me more", "Hmmm.", "Do you really think so?", "You don't say.", 
+			"Cool! By the way, type in 'fun facts' to hear some.", "So, would you like to go for a walk?", "Could you say that again?"};
 	
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
+	private String[] randomAngryResponses = {"Grrr!", "I'm drowning in my anger!", "I'm so mad!", "D:<"};
 	
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+	private String[] randomHappyResponses = {"Ruf Ruf!", "Today is a good day", "Dogs rule, cats drool!", "You make me happy", ":D"};
 	
 	
 }
