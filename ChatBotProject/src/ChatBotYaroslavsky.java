@@ -329,7 +329,7 @@ public class ChatBotYaroslavsky {
 		else {
 			return "Buying " + restOfStatement + " is boring.";
 		}
-	}
+	} 
 	
 	
 	/**
