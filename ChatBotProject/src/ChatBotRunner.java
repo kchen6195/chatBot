@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 /**
  * A simple  class to run our chatbot teams.
@@ -23,54 +24,49 @@ public class ChatBotRunner
 		String statement = in.nextLine();
 		
 		/*
-		 * These if and if else statements decides which chatbot the user wants to talk to.
-		 * Uses the checkChatBot function to understand if the 
+		 * array animalArray is all of the animals that our pet shop chatbot can provide information on.
+		 * int animalPosArray is the position of the animal the user wants to discuss within animalArray.
 		 */
-		if (chatbot1.checkChatBot(statement))
+		String[] animalArray = {"hamster","guinea pig","tortoise","frog","dog","cat","fish","seaweed"};
+		int animalPosArray = -1;
+		for (String animal:animalArray)
 		{
-
-			System.out.println("oh ok so you like reptiles");
-			statement = in.nextLine();
-			while (!statement.equals("Bye") && !(chatbot2.checkChatBot(statement))
-					&& !(chatbot3.checkChatBot(statement)) && !(chatbot4.checkChatBot(statement)))
+			if (chatbot1.findKeyword(statement, animal, 0)>=0)
 			{
-				System.out.println(chatbot1.getResponse(statement));
-				statement = in.nextLine();
+				animalPosArray = Arrays.asList(animalArray).indexOf(animal);
 			}
 		}
-		else if (chatbot2.checkChatBot(statement))
+		if (animalPosArray< 2 && animalPosArray>-1)
 		{
-			System.out.println("ask me about the smallest of animals");
-			statement = in.nextLine();
-			while (!statement.equals("Bye") && !chatbot1.checkChatBot(statement) 
-					&& !chatbot3.checkChatBot(statement) && !chatbot4.checkChatBot(statement))
+			while (statement!="Bye")
 			{
 				System.out.println(chatbot2.getResponse(statement));
 				statement = in.nextLine();
 			}
 		}
-		else if (chatbot3.checkChatBot(statement))
+		else if (animalPosArray< 4 && animalPosArray>1)
 		{
-			System.out.println("fish person");
-			statement = in.nextLine();
-			while (!statement.equals("Bye") && !chatbot2.checkChatBot(statement) 
-					&& !chatbot1.checkChatBot(statement) && !chatbot4.checkChatBot(statement))
+			while (statement!="Bye")
 			{
-				System.out.println(chatbot3.getResponse(statement));
+				System.out.println(chatbot1.getResponse(statement));
 				statement = in.nextLine();
 			}
 		}
-		else if (chatbot4.checkChatBot(statement))
+		else if (animalPosArray< 6 && animalPosArray>3)
 		{
-			System.out.println("dog person");
-			statement = in.nextLine();
-			while (!statement.equals("Bye") && !chatbot2.checkChatBot(statement)
-					&& !chatbot3.checkChatBot(statement) && !chatbot1.checkChatBot(statement))
+			while (statement!="Bye")
 			{
 				System.out.println(chatbot4.getResponse(statement));
 				statement = in.nextLine();
 			}
-
+		}
+		else if (animalPosArray< 8 && animalPosArray>5)
+		{
+			while (statement!="Bye")
+			{
+				System.out.println(chatbot3.getResponse(statement));
+				statement = in.nextLine();
+			}
 		}
 		else
 		{

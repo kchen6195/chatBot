@@ -25,7 +25,7 @@ public class ChatBotBernard {
 		}
 		return false;
 	}
-	private int findKeyword(String statement, String goal,
+	public int findKeyword(String statement, String goal,
 			int startPos)
 	{
 		String phrase = statement.trim().toLowerCase();
