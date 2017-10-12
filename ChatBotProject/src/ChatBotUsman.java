@@ -8,7 +8,7 @@ import java.util.Random;
 
 * This version:
 
-* @author Mr. Levin
+* @author Muhammad Usmans
 
 * @version  September 2017
 
