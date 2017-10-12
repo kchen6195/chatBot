@@ -96,7 +96,7 @@ import java.util.Random;
 
 				{
 
-					response = "Why so negative?";
+					response = "Ok I guess not?";
 
 					emotion--;
 
@@ -126,7 +126,24 @@ import java.util.Random;
 
 				{
 
-					response = "YES! They are the best! QUET, COOL, AND EASY TO TAKE CARE OF!";
+					response = "YES! They are the best! QUET, COOL, AND EASY TO TAKE CARE OF! If you want to find out more information on them enter'type of fish'";
+
+					emotion++;
+
+				}
+				else if (findKeyword(statement, "type of fish") >= 0)
+
+				{
+
+					response = "Fish is a popular pet, which means it comes in all shapes and size but our store only has the most popular one such as 'Clown Fish', 'Neon Tetra', 'Danios', 'Platies', 'Kuhli Loach','Cherry Barb','Fire Mouth Cichilid','Pearl Gourami','Tiger Pleco','Mollies','Sword Tails','Betta',"
+							+ "If you want to find out more information on one of them, just enter the name";
+
+				}
+				else if (findKeyword(statement, "Clown Fish") >= 0)
+
+				{
+
+					response = "YES! They are the best! QUET, COOL, AND EASY TO TAKE CARE OF! If you want to find out more information on them enter'type of fish'";
 
 					emotion++;
 
