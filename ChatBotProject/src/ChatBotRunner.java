@@ -74,7 +74,7 @@ public class ChatBotRunner
 			}
 		}
 		else
-		{
+		{//
 			System.out.println("Please say a real animal this time.");
 			statement = in.nextLine();
 		}

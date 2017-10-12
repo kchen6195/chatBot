@@ -139,7 +139,7 @@ public class ChatBotChen {
 					response = "once a day and when it stares at you ";
 				}
 				else if(findKeyword(statement, "sleep")!= -1)
-				{
+				{//
 					response = "sleeps during the day and awake at night";
 				}
 			}
