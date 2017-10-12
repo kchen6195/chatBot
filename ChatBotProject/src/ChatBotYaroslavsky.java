@@ -26,6 +26,7 @@ public class ChatBotYaroslavsky {
 	
 	boolean mentionDog = false;
 	boolean mentionCat = false;
+	boolean playActive = false;
 	boolean listedDogBreeds = false;
 	
 	/**
@@ -34,7 +35,7 @@ public class ChatBotYaroslavsky {
 	 */	
 	public String getGreeting() {
 		return "Hi, what is up? Do you want to talk about man's best friend (dogs) or their worst enemy (cats)?"
-				+ "\nType in 'dog' or 'cat' to learn more about them!";
+				+ "\nType in 'dog' or 'cat' to continue to learn more about them!";
 	}
 		
 	/**
@@ -52,40 +53,32 @@ public class ChatBotYaroslavsky {
 		
 		String[] animalArray = {"hamster","guinea pig","tortoise","frog","dog","cat","fish","seaweed"};
 		int animalPosArray = -1;
-		{
-			for (String animal:animalArray)
-			{
-				if (findKeyword(statement, animal, 0)>=0)
-				{					
-					animalPosArray = Arrays.asList(animalArray).indexOf(animal);
-				}	
-			}
+		
+		for (String animal:animalArray) {
+			if (findKeyword(statement, animal) >= 0) {				
+				animalPosArray = Arrays.asList(animalArray).indexOf(animal);
+			}	
 		}
-		if (animalPosArray< 2 && animalPosArray>-1)
-		{
-			while (statement!="Bye")
-			{
+		
+		if (animalPosArray < 2 && animalPosArray > -1) {
+			while (statement!="Bye") {
 				System.out.println(chatbot2.getResponse(statement));
 				statement = in.nextLine();
 			}
 		}
-		
-		else if (animalPosArray< 4 && animalPosArray>1)
-		{
-			while (statement!="Bye")
-			{
+		else if (animalPosArray < 4 && animalPosArray > 1) {
+			while (statement!="Bye") {
 				System.out.println(chatbot1.getResponse(statement));
 				statement = in.nextLine();
 			}
 		}
-		else if (animalPosArray< 8 && animalPosArray>5)
-		{
-			while (statement!="Bye")
-			{
+		else if (animalPosArray < 8 && animalPosArray > 5) {
+			while (statement!="Bye") {
 				System.out.println(chatbot3.getResponse(statement));
 				statement = in.nextLine();
 			}
 		} 
+		
 		
 		if (statement.length() == 0) {
 			response = "Please talk to me.";
@@ -150,6 +143,26 @@ public class ChatBotYaroslavsky {
 		else if (findKeyword(statement, "decide") >= 0 && findKeyword(statement, "dog") >= 0) {
 			response = flipCoinGameIntro(statement);
 		}
+		else if (statement.equals("play")) {
+			response = "Type in 'tails' if you think you should buy a dog \nand 'heads' if you think you should buy anything else "
+					+ "\nI will decide for you";
+			playActive = true;
+		}
+		else if (statement.equals("heads") && playActive) {
+			response = "Oops! Looks like it landed on tails. Time to get a dog!"
+					+ "\nIf you believe there is something wrong with this game please type 'help'";
+			emotion--;
+		}
+		else if (statement.equals("tails") && playActive) {
+			response = "Congrats! The coin landed on tails. Time to get a dog!"
+					+ "\nIf you believe there is something wrong with this game please type 'help'";
+			emotion++;
+		}
+		else if (findKeyword(statement, "help") >= 0 && playActive) {
+			response = "That's right! I tricked you because everyone should buy dogs, for they are the best species"
+					+ "\n(I may be a bit biased towards dogs)";
+			playActive = false;
+		}
 		else if (findKeyword(statement, "buy") >= 0) {
 			response = transformBuy(statement); 
 		}
@@ -165,16 +178,10 @@ public class ChatBotYaroslavsky {
 			response = "Why so negative?";
             emotion--;
 		}	
-		else if (statement.equals("play")) {
-			response = "Type in 'tails' if you think you should buy a dog \nand 'heads' if you think you should buy anything else "
-					+ "\nI will decide for you";
+		else if (findKeyword(statement, "fun facts") >= 0) {
+			Random r = new Random();
+			response = funFacts[r.nextInt(funFacts.length)];
 		}
-		else if (statement.equals("heads")) {
-			response = "Oops! Looks like it landed on tails. Time to get a dog!";
-		}
-		else if (statement.equals("tails")) {
-			response = "Congrats! The coin landed on tails. Time to get a dog!";
-		}	
 		else {
 			for (String breed: dogBreedArray) {
 				if (findKeyword(statement,breed) != -1) {
@@ -183,6 +190,7 @@ public class ChatBotYaroslavsky {
 			}
 			if (listedDogBreeds) {
 				response = transformBreeds(statement);
+				listedDogBreeds = false;
 			}
 			else {
 				response = getRandomResponse();
@@ -311,8 +319,12 @@ public class ChatBotYaroslavsky {
 			emotion++;
 			return "Very good choice! You shouldn't even consider buying " + restOfStatement;
 		}
+		else if (findKeyword(statement.substring(0, psn), "don't") >= 0 && findKeyword(statement, "dog") >= 0) {
+			emotion--;
+			return "Let me try and persuade you into buying " + restOfStatement;
+		}
 		else if (findKeyword(statement.substring(0, psn), "don't") >= 0) {
-			return "Why don't you want to buy " + restOfStatement;
+			return "Why don't you want to buy " + restOfStatement + "?";
 		}
 		else if (findKeyword(statement, "cat") >= 0) {
 			emotion--;
@@ -321,10 +333,6 @@ public class ChatBotYaroslavsky {
 		else if (findKeyword(statement, "dog") >= 0) {
 			emotion++;
 			return "I agree! Buying " + restOfStatement + " is a great idea!";
-		}
-		else if (findKeyword(statement.substring(0, psn), "don't") >= 0 && findKeyword(statement, "dog") >= 0) {
-			emotion--;
-			return "Let me try and persuade you into buying " + restOfStatement;
 		}
 		else {
 			return "Buying " + restOfStatement + " is boring.";
@@ -396,6 +404,13 @@ public class ChatBotYaroslavsky {
 	private String[] randomAngryResponses = {"Grrr!", "I'm drowning in my anger!", "I'm so mad!", "D:<"};
 	
 	private String[] randomHappyResponses = {"Ruf Ruf!", "Today is a good day", "Dogs rule, cats drool!", "You make me happy", ":D"};
+	
+	private String[] funFacts = {"Dogs don't have the same muscles in the cheeks and lips as we do, therefore a blow is something they do not understand",
+			"To a dog, a stare from another dog, animal or human is rude and can mean a challenge", 
+			"A dog can locate the source of a sound in 1/600 of a second and can hear sounds four times farther away than a human can", 
+			"Cats  have a 'cry' which they use to manipulate humans", 
+			"Cats hunt and bring you dead animals because they think you are too stupid to catch a bird or a mouse on your own", 
+			"When a cat is rubbing up against you or lying in your lap, it doesn't want affection, it is marking you as its property"};
 	
 	
 }

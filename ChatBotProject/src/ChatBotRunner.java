@@ -58,6 +58,7 @@ public class ChatBotRunner
 		}
 		else if (animalPosArray< 6 && animalPosArray>3)
 		{
+			System.out.println(chatbot4.getGreeting());
 			while (statement!="Bye")
 			{
 				System.out.println(chatbot4.getResponse(statement));
