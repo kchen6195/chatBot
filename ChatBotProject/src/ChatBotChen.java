@@ -1,4 +1,5 @@
 import java.util.Random;
+
 /*
  * Chat Bot that will attend to a customer that wants a small animal.
  * @Author:  Kelvin Chen
@@ -14,8 +15,8 @@ public class ChatBotChen {
 
 
 	int emotion = 0;
-	public static String animal = "";
-
+	String animal = "";
+	double cart = 0;
 	
 	/**
 	 * Search for one word in phrase. The search is not case
@@ -33,6 +34,7 @@ public class ChatBotChen {
 	 * @return the index of the first occurrence of goal in
 	 *         statement or -1 if it's not found
 	 */
+	
 	private int findKeyword(String statement, String goal,
 			int startPos)
 	{
@@ -93,6 +95,48 @@ public class ChatBotChen {
 	{
 		return findKeyword (statement, goal, 0);
 	}
+	public double getEmotionTax()
+	{
+		if(emotion == 0)
+		{
+			return 1.08;
+		}
+		if(emotion == -1)
+		{
+			return 1.09;
+		}
+		if(emotion == -2)
+		{
+			return 1.1;
+		}
+		if(emotion == -3)
+		{
+			return 1.11;
+		}
+		if(emotion < -3)
+		{
+			return 1.15;
+		}
+		if(emotion == 1)
+		{
+			return 1.07;
+		}
+		if(emotion == 2)
+		{
+			return 1.06;
+		}
+		if(emotion == 3)
+		{
+			return 1.05;
+		}
+		if(emotion > 3)
+		{
+			return 1.02;
+		}
+		return 0.08;
+	}
+	
+	
 	public String getResponse(String statement)
 	{
 			String response = "";
@@ -109,7 +153,13 @@ public class ChatBotChen {
 		if(findKeyword(statement, "guinea pig") != -1)
 		{
 			animal = "guinea pig";
-			response = "hey ask away about your budget hamster questions!";
+			
+		}
+		if(animal.equalsIgnoreCase("guinea pig"))
+		{
+			emotion--;
+			response = "Im actually not going to respond to questions about those budget hamsters. "
+					+ "Ill talk to you once I hear the word 'hamster'";
 		}
 		if(animal.equalsIgnoreCase("hamster"))
 		{
@@ -160,6 +210,84 @@ public class ChatBotChen {
 							+ " Second is the bin cage (cheap and effective) for $30.00 \n"
 							+ "Third is the tank cage(pricy but will make for a happy hamster and happy chatBotChen) for $50.00 ";
 				}
+				if(findKeyword(statement, "bedding")!= -1)
+				{
+					response = "We have 2 types of bedding at this store! \n"
+							+ "First is the regular bedding(good quality) for $15.00 \n"
+							+ " Second is the ultra bedding (super good quality) for $20.00 \n"
+							+ "Third is the fluffy bedding(pricy and bad for the hamster) for $50.00 \n";
+				}
+			}
+			else if (findKeyword(statement, "buy") != -1)
+			{
+				if(findKeyword(statement, "treat")!= -1)
+				{
+					emotion--;
+					cart = cart + 5.00;
+					response = "Alright, treat mix will cost you $5.00"+
+					 " You currently have "+ cart + " worth of items";									
+				}
+				if(findKeyword(statement, "tasty")!= -1)
+				{
+					
+					cart = cart + 8.00;
+					response = "Alright, tasty mix will cost you $8.00"+
+							 " You currently have "+ cart + " worth of items";										
+				}
+				if(findKeyword(statement, "healthy")!= -1)
+				{
+					emotion++;
+					cart = cart + 12.50;
+					response = "Alright, healthy mix will cost you $12.50"+
+							 " You currently have "+ cart + " worth of items";										
+				}
+				if(findKeyword(statement, "wired")!= -1)
+				{
+					emotion--;
+					cart = cart + 40.00;
+					response = "Alright, wired cage will cost you $40.00"+
+							 " You currently have "+ cart + " worth of items";										
+				}
+				if(findKeyword(statement, "bin")!= -1)
+				{
+					
+					cart = cart + 30.00;
+					response = "Alright, bin cage will cost you $30.00"+
+							 " You currently have "+ cart + " worth of items";										
+				}
+				if(findKeyword(statement, "tank")!= -1)
+				{
+					emotion++;
+					cart = cart + 50.00;
+					response = "Alright, tank cage will cost you $50.00"+
+							 " You currently have "+ cart + " worth of items";										
+				}
+				if(findKeyword(statement, "regular")!= -1)
+				{
+					
+					cart = cart + 15.00;
+					response = "Alright, regular bedding will cost you $15.00"+
+							 " You currently have "+ cart + " worth of items";									
+				}
+				if(findKeyword(statement, "ultra")!= -1)
+				{
+					emotion++;
+					cart = cart + 20.00;
+					response = "Alright, ultra bedding will cost you $20.00"+
+							 " You currently have "+ cart + " worth of items";									
+				}
+				if(findKeyword(statement, "fluffy")!= -1)
+				{
+					emotion--;
+					cart = cart + 50.00;
+					response = "Alright, fluffy bedding will cost you $50.00"+
+							 " You currently have "+ cart + " worth of items";										
+				}
+			}
+			else if (findKeyword(statement, "checkout") != -1)
+			{
+			  response = "You have payed "+ (cart * getEmotionTax()) + " . Thanks for shopping";
+			  cart = 0;
 			}
 			else
 			{
