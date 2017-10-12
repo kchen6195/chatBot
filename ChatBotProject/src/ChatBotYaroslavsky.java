@@ -51,7 +51,7 @@ public class ChatBotYaroslavsky {
 		ChatBotUsman chatbot3 = new ChatBotUsman();
 		Scanner in = new Scanner (System.in); 
 		
-		String[] animalArray = {"hamster","guinea pig","tortoise","frog","dog","cat","fish","seaweed"};
+		String[] animalArray = {"hamster","guinea pig","tortoise","frog","tarantula","snake","dog","cat","fish","seaweed"};
 		int animalPosArray = -1;
 		
 		for (String animal:animalArray) {
@@ -66,13 +66,13 @@ public class ChatBotYaroslavsky {
 				statement = in.nextLine();
 			}
 		}
-		else if (animalPosArray < 4 && animalPosArray > 1) {
+		else if (animalPosArray < 6 && animalPosArray > 1) {
 			while (statement!="Bye") {
 				System.out.println(chatbot1.getResponse(statement));
 				statement = in.nextLine();
 			}
 		}
-		else if (animalPosArray < 8 && animalPosArray > 5) {
+		else if (animalPosArray < 10 && animalPosArray > 7) {
 			while (statement!="Bye") {
 				System.out.println(chatbot3.getResponse(statement));
 				statement = in.nextLine();
