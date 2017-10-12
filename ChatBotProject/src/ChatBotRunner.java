@@ -19,7 +19,7 @@ public class ChatBotRunner
 		ChatBotUsman chatbot3 = new ChatBotUsman();
 		ChatBotYaroslavsky chatbot4 = new ChatBotYaroslavsky();
 		
-		System.out.println("yo this is the best pet shop in downtown bk \nhow can we help you");
+		System.out.println("yo this is the best pet shop in downtown bk \n Which animal would you like to learn about?");
 		Scanner in = new Scanner (System.in);
 		String statement = in.nextLine();
 		
@@ -27,7 +27,7 @@ public class ChatBotRunner
 		 * array animalArray is all of the animals that our pet shop chatbot can provide information on.
 		 * int animalPosArray is the position of the animal the user wants to discuss within animalArray.
 		 */
-	
+		
 		String[] animalArray = {"hamster","guinea pig","tortoise","frog","dog","cat","fish","seaweed"};
 		int animalPosArray = -1;
 		{
@@ -74,7 +74,8 @@ public class ChatBotRunner
 		}
 		else
 		{
-			
+			System.out.println("Please say a real animal this time.");
+			statement = in.nextLine();
 		}
 	}
 }

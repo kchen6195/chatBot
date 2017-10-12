@@ -12,31 +12,11 @@ import java.util.Random;
  */
 public class ChatBotChen {
 
-	public boolean checkChatBot(String animalkey)
-	{
-		String[] animalArray = {"hamster","guinea pig","rabbit"};
-		for (String animal:animalArray)
-		{
-			if (findKeyword(animalkey,animal) != -1)
-			{
-				return true;
-			}
-			
-		}
-		return false;
-		
-	}
+
 	int emotion = 0;
 	public static String animal = "";
-	/*
-	 * Get a greeting
-	 * @return: a greeting
-	 */
-	public String getGreeting()
-	{
-		return "Hello, I'm the bot responsible for small animals. Which include hamsters, guinea pigs and rabbits."; 
-	}
 
+	
 	/**
 	 * Search for one word in phrase. The search is not case
 	 * sensitive. This method will check that the given goal
@@ -124,16 +104,14 @@ public class ChatBotChen {
 		if(findKeyword(statement, "hamster") != -1)
 		{
 			 animal = "hamster";
+			 
 		}
 		if(findKeyword(statement, "guinea pig") != -1)
 		{
 			animal = "guinea pig";
+			response = "hey ask away about your budget hamster questions!";
 		}
-		if(findKeyword(statement, "rabbit") != -1)
-		{
-			animal = "rabbit";
-		}
-		if(animal == "hamster")
+		if(animal.equalsIgnoreCase("hamster"))
 		{
 			 if (findKeyword(statement, "how") != -1)
 			{
@@ -143,7 +121,7 @@ public class ChatBotChen {
 				}
 				else if(findKeyword(statement, "feed")!= -1)
 				{
-					response = "give it a food bowl and poor a tablespoon of food into it";
+					response = "give it a food bowl and pour a tablespoon of food into it";
 				}
 				else if(findKeyword(statement, "hold")!= -1)
 				{
@@ -158,16 +136,37 @@ public class ChatBotChen {
 			{
 				if(findKeyword(statement, "feed")!= -1)
 				{
-					response = "when it stares at you ";
+					response = "once a day and when it stares at you ";
 				}
-				else if(findKeyword(statement, "sleeps")!= -1)
+				else if(findKeyword(statement, "sleep")!= -1)
 				{
-					response = "during the day and awake at night";
+					response = "sleeps during the day and awake at night";
+				}
+			}
+			else if (findKeyword(statement, "what") != -1)
+			{
+				if(findKeyword(statement, "food")!= -1)
+				{
+					response = "Hey we have 3 types of food at this store! \n"
+							+ " First one is the treat mix (unhealthy for hamsters, If you pick this I will be mad!) for $5.00 \n" 
+							+ " Second one is the tasty mix(not a bad pick) for $8.00 \n"
+							+ " Third one is the healthy mix(expensive, but your hamster will love you, so will I.) for $12.50 ";
+					
+				}
+				if(findKeyword(statement, "cage")!= -1)
+				{
+					response = "We have 3 cages at this store! \n"
+							+ " First is the wired cage(bad for their health) for $40.00 \n "
+							+ " Second is the bin cage (cheap and effective) for $30.00 \n"
+							+ "Third is the tank cage(pricy but will make for a happy hamster and happy chatBotChen) for $50.00 ";
 				}
 			}
 			else
 			{
-				response = "go away";
+				
+					response = "hey ask away about your hamster questions!";
+				
+				
 			}
 		
 	}
