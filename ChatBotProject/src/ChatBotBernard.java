@@ -6,9 +6,7 @@ public class ChatBotBernard {
 	int patience = 0;
 	
 	
-	ChatBotChen chatbot2 = new ChatBotChen();
-	ChatBotUsman chatbot3 = new ChatBotUsman();
-	ChatBotYaroslavsky chatbot4 = new ChatBotYaroslavsky();
+	
 	Scanner in = new Scanner (System.in);
 	
 	boolean convoTortoise = false;
@@ -103,6 +101,9 @@ public class ChatBotBernard {
 	public String getResponse(String statement)
 	{
 		statement.toLowerCase();
+		ChatBotChen chatbot2 = new ChatBotChen();
+		ChatBotUsman chatbot3 = new ChatBotUsman();
+		ChatBotYaroslavsky chatbot4 = new ChatBotYaroslavsky();
 		
 		String[] animalArray = {"hamster","guinea pig","tortoise","frog","tarantula","snake","dog","cat","fish","seaweed"};
 		int animalPosArray = -1;

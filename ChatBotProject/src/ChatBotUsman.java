@@ -6,9 +6,7 @@ public class ChatBotUsman {
 	int emotion = 0;
 	
 	
-	ChatBotChen chatbot2 = new ChatBotChen();
-	ChatBotUsman chatbot3 = new ChatBotUsman();
-	ChatBotYaroslavsky chatbot4 = new ChatBotYaroslavsky();
+	
 	Scanner in = new Scanner (System.in);
 	
 	boolean convoFish = false;
@@ -98,9 +96,12 @@ public class ChatBotUsman {
 	 * @param String statement
 	 * @return a string for the chat bot to respond with.
 	 */
-	public String getRandomResponse(String statement)
+	public String getResponse(String statement)
 	{
 		statement.toLowerCase();
+		ChatBotChen chatbot2 = new ChatBotChen();
+		ChatBotBernard chatbot1 = new ChatBotBernard();
+		ChatBotYaroslavsky chatbot4 = new ChatBotYaroslavsky();
 		
 		String[] animalArray = {"hamster","guinea pig","tortoise","frog","tarantula","snake","dog","cat","fish","seaweed"};
 		int animalPosArray = -1;
@@ -134,7 +135,7 @@ public class ChatBotUsman {
 		{
 			while (statement!="Bye")
 			{
-				System.out.println(chatbot3.getRandomResponse(statement));
+				System.out.println(chatbot1.getResponse(statement));
 				statement = in.nextLine();
 			}
 		}
