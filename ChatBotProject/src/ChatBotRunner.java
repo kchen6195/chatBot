@@ -28,7 +28,7 @@ public class ChatBotRunner
 		 * int animalPosArray is the position of the animal the user wants to discuss within animalArray.
 		 */
 		
-		String[] animalArray = {"hamster","guinea pig","tortoise","frog","tarantula","snake","dog","cat","fish","seaweed"};
+		String[] animalArray = {"hamster","guinea pig","tortoise","frog","tarantula","snake","dog","cat","fish"};
 		int animalPosArray = -1;
 		{
 			for (String animal:animalArray)
@@ -39,6 +39,7 @@ public class ChatBotRunner
 				}	
 			}
 		}
+
 		
 		if (animalPosArray< 2 && animalPosArray>-1)
 		{
@@ -67,6 +68,8 @@ public class ChatBotRunner
 		}
 		else if (animalPosArray< 10 && animalPosArray>7)
 		{
+
+			System.out.println(chatbot3.getGreeting());
 			while (statement!="Bye")
 			{
 				System.out.println(chatbot3.getResponse(statement));

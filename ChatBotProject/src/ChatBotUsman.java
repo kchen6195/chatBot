@@ -13,7 +13,7 @@ public class ChatBotUsman {
 	
 	public String getGreeting()
 	{
-		return "Hi I'm a Fish Bot, so if you hvae any questions concerning the fish we are selling in our store, ASK AWAY!!!";
+		return "Hi I'm a Fish Bot, so if you have any questions concerning the fish we are selling in our store, ASK AWAY!!!";
 	}
 	public int findKeyword(String statement, String goal,
 			int startPos)
@@ -98,6 +98,7 @@ public class ChatBotUsman {
 	 */
 	public String getResponse(String statement)
 	{
+		String response ="";
 		statement.toLowerCase();
 		ChatBotChen chatbot2 = new ChatBotChen();
 		ChatBotBernard chatbot1 = new ChatBotBernard();
@@ -122,6 +123,14 @@ public class ChatBotUsman {
 				statement = in.nextLine();
 			}
 		}
+		else if  (animalPosArray> 2 && animalPosArray<5)
+		{
+			while (statement!="Bye")
+			{
+				System.out.println(chatbot2.getResponse(statement));
+				statement = in.nextLine();
+			}
+		}
 		
 		else if (animalPosArray< 8 && animalPosArray>5)
 		{
@@ -131,22 +140,11 @@ public class ChatBotUsman {
 				statement = in.nextLine();
 			}
 		}
-		else if (animalPosArray< 10 && animalPosArray>7)
-		{
-			while (statement!="Bye")
-			{
-				System.out.println(chatbot1.getResponse(statement));
-				statement = in.nextLine();
-			}
-		}
 		
 		
 		
-		if (findKeyword(statement, "Fish", 0)>=0)
-		{
-			
-			convoFish = true;
-		}
+		
+		
 		if (statement.length()==0)
 		{
 			String[] emptyResponses = {"Waiting for a response","Are you there?",
@@ -154,6 +152,11 @@ public class ChatBotUsman {
 			int i = (int)Math.random()*(emptyResponses.length);
 			String answerEmpty = emptyResponses[i];
 			return answerEmpty;
+		}
+		else if (findKeyword(statement, "fish", 0) >= 0 && statement.length() == 4)
+		{
+			response = "Great!";
+			convoFish = true;
 		}
 		else if (convoFish)
 		{
@@ -163,11 +166,17 @@ public class ChatBotUsman {
 				{
 					return "The pet fish are given food in the form of flakes, granules and pellets. Vegetable matter, raw potatoes, bits of beans, peas, zucchini, etc. are fed to the pet fish. Sponges and spirulina algae are some of the foods that are given to the fish in the frozen form.";
 				}
-				else if (findKeyword(statement, "habitat", 0)>=0)
+				else if (findKeyword(statement, "habitat", 0)>=0 || findKeyword(statement, "live", 0)>=0)
 				{
 					return "Size and Species of your fish. Naturally, the larger the fish, the larger the tank they will need. "
 							+ "Remember, though, you shouldn’t force your fish into a habitat that doesn’t suit him because you can’t afford the tank or don’t have the room."
 							+ " Determine the maximum size of the tank you can have before researching what fish and how many will fit in it.";
+							
+				}
+				else if (findKeyword(statement, "breeds", 0)>=0)
+				{
+					return "The different fish we have are Guppies, Neon Tetra, Swordtail, Angelfish, Cory Catfish, Black-Skirt Tetra, Harlequin Rasbora and more which can viewed on this http://www.leisurepro.com/blog/explore-the-blue/10-popular-tropical-fish-aquariums/"; 
+							
 							
 				}
 				else
@@ -175,7 +184,7 @@ public class ChatBotUsman {
 					return "What, what? You can ask about what food they eat or what habitat though.\nYou can use this article to help answer your question! https://www.hartz.com/choosing-the-right-aquarium-tank/";
 				}
 			}
-			else if (findKeyword(statement, "how", 0)>=0)
+			else if (findKeyword(statement, "how", 0)>=0||(findKeyword(statement, "I want", 0)>=0))
 			{
 				if ((findKeyword(statement, "live", 0)>=0)||(findKeyword(statement, "years", 0)>=0))
 				{
@@ -187,18 +196,19 @@ public class ChatBotUsman {
 				}
 				else 
 				{
-					return "How, what? You can ask how long they live or how to get one.\nYou can use this article to help answer your question! http://www.vetstreet.com/our-pet-experts/tempted-to-get-a-pet-turtle-or-tortoise-read-this-first";
+					return "How, what? You can ask how long do they live or how to get one.\nYou can use this article to help answer your question! http://www.vetstreet.com/our-pet-experts/tempted-to-get-a-pet-turtle-or-tortoise-read-this-first";
 				}
 				
 			}
-			else if (findKeyword(statement, "breeds", 0)>=0)
-			{
-				return "The different fish we have are Guppies, Neon Tetra, Swordtail, Angelfish, Cory Catfish, Black-Skirt Tetra, Harlequin Rasbora and more which can viewed on this http://www.leisurepro.com/blog/explore-the-blue/10-popular-tropical-fish-aquariums/"; 
+			//else if (findKeyword(statement, "breeds", 0)>=0)
+			//{
+			//	return "The different fish we have are Guppies, Neon Tetra, Swordtail, Angelfish, Cory Catfish, Black-Skirt Tetra, Harlequin Rasbora and more which can viewed on this http://www.leisurepro.com/blog/explore-the-blue/10-popular-tropical-fish-aquariums/"; 
 						
 						
-			}
+			//}
 		}
-		return getRandomResponse();
+		
+		return response;
 	}
 }
 		
