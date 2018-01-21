@@ -175,7 +175,8 @@ public class ChatBotUsman {
 				}
 				else if (findKeyword(statement, "breeds", 0)>=0)
 				{
-					return "The different fish we have are Guppies, Neon Tetra, Swordtail, Angelfish, Cory Catfish, Black-Skirt Tetra, Harlequin Rasbora and more which can viewed on this http://www.leisurepro.com/blog/explore-the-blue/10-popular-tropical-fish-aquariums/"; 
+					return "The different fish we have are Guppies, Neon Tetra, Swordtail, Angelfish, Cory Catfish,"
+							+ " Black-Skirt Tetra, Harlequin Rasbora and more which can viewed on this http://www.leisurepro.com/blog/explore-the-blue/10-popular-tropical-fish-aquariums/"; 
 							
 							
 				}
